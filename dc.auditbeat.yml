@@ -9,11 +9,11 @@ services:
      - /opt/threathunt/auditbeat/auditbeat.yml:/usr/share/auditbeat/auditbeat.yml
      #Allows us to report on docker from the hosts information.
      - /var/run/docker.sock:/var/run/docker.sock
-    pid: "host" # Set the required permissions with pid and cap_add for Auditbeat
+    pid: host # Set the required permissions with pid and cap_add for Auditbeat
     cap_add: ['AUDIT_CONTROL', 'AUDIT_READ']
     networks: 
      - elastic
-    command: auditbeat -e -strict.perms=false
+    command: auditbeat -e --strict.perms=false
     restart: unless-stopped
 volumes:
   data01:
