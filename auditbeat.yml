@@ -19,18 +19,17 @@ auditbeat.modules:
     - /opt
     - /bin
     - /usr/bin
- # - /usr/local/bin
- # - /sbin
- 
- # - /usr/sbin
- # - /usr/local/sbin
+    - /usr/local/bin
+    - /sbin
+    - /usr/sbin
+    - /usr/local/sbin
 
 - module: system
   datasets:
     - host    # General host information, e.g. uptime, IPs
     - login   # User logins, logouts, and system boots.
     - package # Installed, updated, and removed packages
-#    - process # Started and stopped processes
+    - process # Started and stopped processes
 #    - socket  # Opened and closed sockets
     - user    # User information
 
@@ -53,7 +52,7 @@ setup.template.settings:
 
 # The tags of the shipper are included in their own field with each
 # transaction published.
-#tags: ["service-X", "web-tier"]
+tags: ["auditbeat", "endpoint"]
 
 # Optional fields that you can specify to add additional information to the
 # output.
