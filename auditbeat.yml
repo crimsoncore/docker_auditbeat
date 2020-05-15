@@ -10,20 +10,29 @@
 #==========================  Modules configuration =============================
 auditbeat.modules:
 
+- module: auditd
+  audit_rules: |
+    -w /etc/passwd -p wra -k passwd_changes
+
 - module: file_integrity
   paths:
-  - /bin
-  - /usr/bin
-  - /usr/local/bin
-  - /sbin
-  - /usr/sbin
-  - /usr/local/sbin
+    - /opt
+    - /bin
+    - /usr/bin
+ # - /usr/local/bin
+ # - /sbin
+ 
+ # - /usr/sbin
+ # - /usr/local/sbin
 
 - module: system
   datasets:
     - host    # General host information, e.g. uptime, IPs
+    - login   # User logins, logouts, and system boots.
     - package # Installed, updated, and removed packages
-    - process # Started and stopped processes
+#    - process # Started and stopped processes
+#    - socket  # Opened and closed sockets
+    - user    # User information
 
   # How often datasets send state updates with the
   # current state of the system (e.g. all currently
