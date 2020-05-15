@@ -1,0 +1,17 @@
+version: '3'
+services:
+  auditbeat:
+    container_name: auditbeat 
+    image: docker.elastic.co/beats/auditbeat:7.6.2
+    volumes:
+     - /opt/threathunt/auditbeat/auditbeat.yml:/usr/share/auditbeat/auditbeat.yml
+    networks: 
+     - elastic
+    command: auditbeat -e -strict.perms=false
+    restart: unless-stopped
+volumes:
+  data01:
+    driver: local
+networks:
+  elastic:
+    driver: bridge
