@@ -4,7 +4,7 @@ services:
     container_name: auditbeat
     hostname: $HOSTNAME
     user: root #To read the docker socket
-    image: docker.elastic.co/beats/auditbeat:7.6.2
+    image: docker.elastic.co/beats/auditbeat:7.8.0
     volumes:
      #Mount the Auditbeat configuration so users can make edits.
      - /opt/threathunt/auditbeat/auditbeat.yml:/usr/share/auditbeat/auditbeat.yml
